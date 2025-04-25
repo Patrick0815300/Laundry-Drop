@@ -23,6 +23,7 @@ export class AppComponent {
   allArticle: Article[] = [];
   laundryList: Article[] = [];
 
+
   // Paginator VARs
   first: number = 0;
   rows: number = 10;
@@ -33,11 +34,10 @@ export class AppComponent {
     // load all article
     try {
       this.allArticle = await this.supabase.getAllArticle();
-      console.log('Artikel:', this.allArticle);
+      //console.log('Artikel:', this.allArticle);
     } catch (error) {
       console.error('Fehler beim Abrufen:', error);
     }
-
     this.allArticle.forEach(a => a.amount = 0);
   }
 
@@ -50,6 +50,8 @@ export class AppComponent {
     this.first = event.first ?? 0;
     this.rows = event.rows ?? 10;
   }
+
+
 
 
 }

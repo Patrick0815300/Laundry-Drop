@@ -8,9 +8,10 @@
   <div class="item-list">
     <!-- nur aktuelle Seite rendern -->
     <div class="item" *ngFor="let article of paginatedArticles; let i = index">
-      <img src="" [alt]="article.description" />
+      <p>{{ article.asd6 }}</p>
+      <img [src]="article.photoUrl" [alt]="article.description" />
       <div class="info">
-        <h2>{{ article.title }}</h2>
+        <h2>{{ article.description }}</h2>
         <p>{{ article.sap }}</p>
       </div>
       <div class="controls">
@@ -35,8 +36,6 @@
 
   <footer>
     <p-button>Druckversion erstellen</p-button>
-    <button class="print"></button>
-
     <p-paginator
       [first]="first"
       [rows]="rows"

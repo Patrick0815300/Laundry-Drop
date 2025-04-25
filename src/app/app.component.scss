@@ -36,7 +36,7 @@ h1 {
 .item {
     display: flex;
     align-items: center;
-    background: white;
+    //background: white;
     padding: 1rem;
     border-radius: 1rem;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
@@ -88,7 +88,7 @@ footer {
     padding: 1rem 2rem;
     font-size: 1rem;
     background: $primary;
-    color: white;
+    //color: white;
     border: none;
     border-radius: 0.5rem;
     cursor: pointer;
