@@ -33,13 +33,26 @@ h1 {
     gap: 1.5rem;
 }
 
-.item {
+.p-card {
     display: flex;
     align-items: center;
-    //background: white;
-    padding: 1rem;
-    border-radius: 1rem;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    // padding: 1rem;
+    // border-radius: 1rem;
+    // box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.item {
+    display: flex;
+    gap: 12px;
+
+    p {
+        align-self: center;
+    }
+}
+
+.p-component {
+    display: flex;
 }
 
 .item img {

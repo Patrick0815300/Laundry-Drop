@@ -1,0 +1,12 @@
+.item {
+    display: flex;
+    gap: 12px;
+
+    p {
+        align-self: center;
+    }
+}
+
+.info {
+    flex: 1;
+}

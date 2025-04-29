@@ -6,13 +6,15 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { PrimeNgModule } from './shared/prime-ng/prime-ng.module';
 import { PaginatorState } from 'primeng/paginator';
+import { PrintPopupComponent } from './components/print-popup/print-popup.component';
 
 @Component({
   selector: 'app-root',
   imports: [
     CommonModule,
     FormsModule,
-    PrimeNgModule
+    PrimeNgModule,
+    PrintPopupComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
@@ -23,10 +25,11 @@ export class AppComponent {
   allArticle: Article[] = [];
   laundryList: Article[] = [];
 
-
   // Paginator VARs
   first: number = 0;
   rows: number = 10;
+
+  visible: boolean = false;
 
   constructor(private supabase: SupabaseService) { }
 
@@ -34,14 +37,13 @@ export class AppComponent {
     // load all article
     try {
       this.allArticle = await this.supabase.getAllArticle();
-      //console.log('Artikel:', this.allArticle);
     } catch (error) {
       console.error('Fehler beim Abrufen:', error);
     }
     this.allArticle.forEach(a => a.amount = 0);
   }
 
-  // liefert nur die Elemente der aktuellen Seite
+  // Elemente der aktuellen Seite
   get paginatedArticles(): Article[] {
     return this.allArticle.slice(this.first, this.first + this.rows);
   }
@@ -51,7 +53,35 @@ export class AppComponent {
     this.rows = event.rows ?? 10;
   }
 
+  onSelectArticle(article: Article) {
+    if (article.selected && article.amount > 0) {
+      this.addArticleToLaundry(article)
+    }
+    if (article.selected === false) {
+      article.amount = 0;
+      this.deleteArticleFromLaundry(article)
+    }
+  }
 
+  onChangeAmount(article: Article) {
+    article.selected = false;
+  }
 
+  addArticleToLaundry(article: Article) {
+    const existingIndex = this.laundryList.findIndex(item => item.id === article.id)
+    if (existingIndex === -1) {
+      this.laundryList.push(article);
+      this.laundryList.sort((a, b) => a.id - b.id);
+    }
+  }
+
+  deleteArticleFromLaundry(article: Article) {
+    const existingIndex = this.laundryList.findIndex(item => item.id === article.id)
+    this.laundryList.splice(existingIndex, 1);
+  }
+
+  showDialog() {
+    this.visible = true;
+  }
 
 }

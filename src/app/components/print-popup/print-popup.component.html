@@ -1,1 +1,11 @@
-<p>print-popup works!</p>
+<div *ngFor="let laundry of laundry; let i = index" class="laundry-list">
+    <div class="item">
+        <p>{{ laundry.asd6 }}</p>
+        <div class="info">
+            <p>{{ laundry.description }}</p>
+            <p>{{ laundry.sap }}</p>
+        </div>
+        <p>{{ laundry.amount }}</p>
+    </div>
+    <p-divider />
+</div>
