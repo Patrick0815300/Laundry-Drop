@@ -1,4 +1,4 @@
-<div *ngFor="let laundry of laundry; let i = index" class="laundry-list">
+<div id="print-section" *ngFor="let laundry of laundry; let i = index" class="laundry-list">
     <div class="item">
         <p>{{ laundry.asd6 }}</p>
         <div class="info">
@@ -9,3 +9,4 @@
     </div>
     <p-divider />
 </div>
+<p-button (click)="printPdf()">Drucken</p-button>

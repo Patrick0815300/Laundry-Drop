@@ -7,6 +7,8 @@ import { FormsModule } from '@angular/forms';
 import { PrimeNgModule } from './shared/prime-ng/prime-ng.module';
 import { PaginatorState } from 'primeng/paginator';
 import { PrintPopupComponent } from './components/print-popup/print-popup.component';
+import { FilterDescriptionPipe } from './shared/pipes/filter-description.pipe';
+import { NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +16,9 @@ import { PrintPopupComponent } from './components/print-popup/print-popup.compon
     CommonModule,
     FormsModule,
     PrimeNgModule,
-    PrintPopupComponent
+    PrintPopupComponent,
+    FilterDescriptionPipe,
+    NgOptimizedImage
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
@@ -24,12 +28,14 @@ export class AppComponent {
 
   allArticle: Article[] = [];
   laundryList: Article[] = [];
+  filteredArticles: Article[] = [];
 
-  // Paginator VARs
+  // Paginator vars
   first: number = 0;
   rows: number = 10;
 
   visible: boolean = false;
+  searchTerm: string = '';
 
   constructor(private supabase: SupabaseService) { }
 
@@ -51,6 +57,7 @@ export class AppComponent {
   onPageChange(event: PaginatorState) {
     this.first = event.first ?? 0;
     this.rows = event.rows ?? 10;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   onSelectArticle(article: Article) {
@@ -83,5 +90,4 @@ export class AppComponent {
   showDialog() {
     this.visible = true;
   }
-
 }

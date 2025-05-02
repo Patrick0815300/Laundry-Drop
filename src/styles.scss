@@ -1,1 +1,24 @@
-/* You can add global styles to this file, and also import other style files */
+@media print {
+    body * {
+        visibility: hidden;
+    }
+
+    /* Zeige nur den Print-Bereich */
+    #print-section,
+    #print-section * {
+        visibility: visible !important;
+    }
+
+    /* Positioniere den Print-Bereich oben links */
+    // #print-section {
+    //     position: absolute;
+    //     top: 0;
+    //     left: 0;
+    //     width: 100%;
+    // }
+
+    /* Blende ggf. Overlay-Backdrop aus */
+    .cdk-overlay-backdrop {
+        display: none !important;
+    }
+}
